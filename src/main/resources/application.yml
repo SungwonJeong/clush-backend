@@ -1,0 +1,36 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+      hibernate.globally_quoted_identifiers: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/clush?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password:
+  session:
+    store-type: jdbc
+    jdbc:
+        initialize-schema: always
+
+server:
+  servlet:
+    session:
+      timeout: 1800
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        ORM: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: DEBUG
