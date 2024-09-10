@@ -22,6 +22,7 @@ import static com.example.clushapi.common.message.ErrorMessage.NOT_FOUND_CALENDA
 import static com.example.clushapi.common.message.ErrorMessage.NOT_FOUND_SHARED_USER;
 import static com.example.clushapi.common.message.ErrorMessage.NOT_FOUND_SHARED_USER_AND_CALENDAR;
 import static com.example.clushapi.common.message.ErrorMessage.NOT_FOUND_USER;
+import static com.example.clushapi.common.message.ErrorMessage.OVERLAPPING_SCHEDULE;
 
 @Service
 @RequiredArgsConstructor
@@ -38,9 +39,22 @@ public class CalendarService {
                 () -> new CustomException(NOT_FOUND_USER)
         );
 
+        boolean overlapping = isOverlapping(userId, calendarRequestDto);
+        if (overlapping) {
+            throw new CustomException(OVERLAPPING_SCHEDULE);
+        }
+
         Calendar calendar = calendarRequestDto.toEntity(user);
         calendarRepository.save(calendar);
         return CalendarResponseDto.from(calendar);
+    }
+
+    private boolean isOverlapping(Long userId, CalendarRequestDto calendarRequestDto) {
+        return calendarRepository.existsByUserIdAndStartTimeBeforeAndEndTimeAfter(
+                userId,
+                calendarRequestDto.getEndTime(),
+                calendarRequestDto.getStartTime()
+        );
     }
 
     // 캘린더 조회
@@ -54,6 +68,12 @@ public class CalendarService {
     @Transactional
     public CalendarResponseDto updateCalendar(Long userId, Long calendarId, CalendarRequestDto calendarRequestDto) {
         Calendar calendar = checkAuthorization(userId, calendarId);
+
+        boolean overlapping = isOverlapping(userId, calendarRequestDto);
+        if (overlapping) {
+            throw new CustomException(OVERLAPPING_SCHEDULE);
+        }
+
         calendar.update(calendarRequestDto.getTitle(),
                 calendarRequestDto.getDescription(),
                 calendarRequestDto.getCalendarDate(),

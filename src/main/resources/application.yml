@@ -19,6 +19,10 @@ spring:
     jdbc:
         initialize-schema: always
 
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+
 server:
   servlet:
     session:

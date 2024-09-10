@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 public class CalendarResponseDto {
 
+    private Long calendarId;
     private String title;
     private String description;
 
@@ -23,6 +24,7 @@ public class CalendarResponseDto {
     private LocalDateTime endTime;
 
     private CalendarResponseDto(Calendar calendar) {
+        this.calendarId = calendar.getId();
         this.title = calendar.getTitle();
         this.description = calendar.getDescription();
         this.calendarDate = calendar.getCalendarDate();

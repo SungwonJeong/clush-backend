@@ -10,6 +10,7 @@ import com.example.clushapi.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ import static com.example.clushapi.common.message.ResponseMessage.FIND_TODO_List
 import static com.example.clushapi.common.message.ResponseMessage.FIND_TODO_SUCCESS;
 import static com.example.clushapi.common.message.ResponseMessage.UPDATE_TODO_SUCCESS;
 
+@Tag(name = "2. Todo API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/todo")
@@ -43,7 +45,7 @@ public class TodoController {
     private final TodoService todoService;
     private final UserService userService;
 
-    @Operation(summary = "Todo 생성 API")
+    @Operation(summary = "1. Todo 생성 API", tags = {"2. Todo API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Todo가 성공적으로 생성되었습니다"),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
@@ -59,7 +61,7 @@ public class TodoController {
 
     }
 
-    @Operation(summary = "특정 Todo 조회 API")
+    @Operation(summary = "2. 특정 Todo 조회 API", tags = {"2. Todo API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Todo 조회를 성공하였습니다"),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
@@ -74,7 +76,7 @@ public class TodoController {
         return ResponseMessageDto.toResponseEntity(FIND_TODO_SUCCESS, response);
     }
 
-    @Operation(summary = "특정 날짜의 Todo 리스트 조회 API")
+    @Operation(summary = "3. 특정 날짜의 Todo 리스트 조회 API", tags = {"2. Todo API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Todo 리스트 조회를 성공하였습니다"),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
@@ -89,7 +91,7 @@ public class TodoController {
         return ResponseMessageDto.toResponseEntity(FIND_TODO_List_SUCCESS, response);
     }
 
-    @Operation(summary = "Todo 수정 API")
+    @Operation(summary = "4. Todo 수정 API", tags = {"2. Todo API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Todo가 성공적으로 수정되었습니다"),
             @ApiResponse(responseCode = "400", description = "잘못된 요청: 제목이 없거나 날짜 형식이 잘못되었습니다."),
@@ -106,7 +108,7 @@ public class TodoController {
         return ResponseMessageDto.toResponseEntity(UPDATE_TODO_SUCCESS, response);
     }
 
-    @Operation(summary = "Todo 삭제 API")
+    @Operation(summary = "5. Todo 삭제 API", tags = {"2. Todo API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Todo가 성공적으로 삭제되었습니다"),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),

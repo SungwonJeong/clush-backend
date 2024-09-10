@@ -17,6 +17,7 @@ public enum ErrorMessage {
     NOT_FOUND_TODO("Todo를 찾을 수 없습니다", HttpStatus.NOT_FOUND),
 
     NOT_FOUND_CALENDAR("캘린더를 찾을 수 없습니다", HttpStatus.NOT_FOUND),
+    OVERLAPPING_SCHEDULE("일정이 겹칩니다.", HttpStatus.CONFLICT),
 
     NOT_FOUND_SHARED_USER("공유할 사용자를 찾지 못했습니다", HttpStatus.NOT_FOUND),
     NOT_FOUND_SHARED_USER_AND_CALENDAR("공유된 캘린더를 찾지 못했습니다", HttpStatus.NOT_FOUND);;

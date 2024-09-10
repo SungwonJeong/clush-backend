@@ -7,7 +7,10 @@ import com.example.clushapi.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ import static com.example.clushapi.common.message.ResponseMessage.ALREADY_LOGIN_
 import static com.example.clushapi.common.message.ResponseMessage.LOGIN_SUCCESS;
 import static com.example.clushapi.common.message.ResponseMessage.SIGNUP_SUCCESS;
 
+@Tag(name = "1. User API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -28,7 +32,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Operation(summary = "회원가입 API")
+    @Operation(summary = "1. 회원가입 API", tags = {"1. User API"}, security = @SecurityRequirement(name = ""))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "회원가입이 성공적으로 완료되었습니다."),
             @ApiResponse(responseCode = "400", description = "중복된 이름이 존재합니다")
@@ -39,7 +43,7 @@ public class UserController {
         return ResponseMessageDto.toResponseEntity(SIGNUP_SUCCESS, response);
     }
 
-    @Operation(summary = "로그인 API")
+    @Operation(summary = "2. 로그인 API", tags = {"1. User API"}, security = @SecurityRequirement(name = ""))
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "로그인이 성공적으로 완료되었습니다."),
             @ApiResponse(responseCode = "400", description = "비밀번호가 일치하지 않습니다"),

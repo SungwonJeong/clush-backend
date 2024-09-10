@@ -2,6 +2,7 @@ package com.example.clushapi.todo.dto;
 
 import com.example.clushapi.todo.entity.Todo;
 import com.example.clushapi.user.entity.User;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,6 +16,7 @@ public class TodoRequestDto {
     private String title;
     private String description;
 
+    @Schema(description = "Todo 날짜", example = "2024-09-10")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate todoDate;
 

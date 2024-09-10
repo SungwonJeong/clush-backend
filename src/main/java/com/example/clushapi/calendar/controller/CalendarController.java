@@ -13,6 +13,7 @@ import com.example.clushapi.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ import static com.example.clushapi.common.message.ResponseMessage.SHARE_CALENDAR
 import static com.example.clushapi.common.message.ResponseMessage.UNSHARED_CALENDAR_SUCCESS;
 import static com.example.clushapi.common.message.ResponseMessage.UPDATE_CALENDAR_SUCCESS;
 
+@Tag(name = "3. Calendar API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/calendar")
@@ -43,7 +45,7 @@ public class CalendarController {
     private final CalendarService calendarService;
     private final UserService userService;
 
-    @Operation(summary = "Calendar 생성 API")
+    @Operation(summary = "1. Calendar 생성 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "캘린더가 성공적으로 생성되었습니다."),
             @ApiResponse(responseCode = "400", description = "잘못된 요청: 날짜가 없거나 날짜 형식이 잘못되었습니다."),
@@ -58,7 +60,7 @@ public class CalendarController {
         return ResponseMessageDto.toResponseEntity(CREATE_CALENDAR_SUCCESS, response);
     }
 
-    @Operation(summary = "특정 Calendar 조회 API")
+    @Operation(summary = "2. 특정 Calendar 조회 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "캘린더 조회가 성공적으로 완료되었습니다."),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
@@ -74,7 +76,7 @@ public class CalendarController {
         return ResponseMessageDto.toResponseEntity(FIND_CALENDAR_SUCCESS, response);
     }
 
-    @Operation(summary = "Calendar 수정 API")
+    @Operation(summary = "3. Calendar 수정 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "캘린더가 성공적으로 수정되었습니다."),
             @ApiResponse(responseCode = "400", description = "잘못된 요청: 날짜가 없거나 날짜 형식이 잘못되었습니다."),
@@ -91,7 +93,7 @@ public class CalendarController {
         return ResponseMessageDto.toResponseEntity(UPDATE_CALENDAR_SUCCESS, response);
     }
 
-    @Operation(summary = "Calendar 삭제 API")
+    @Operation(summary = "4. Calendar 삭제 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "캘린더가 성공적으로 삭제되었습니다."),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
@@ -107,7 +109,7 @@ public class CalendarController {
         return ResponseMessageDto.toResponseEntity(DELETE_CALENDAR_SUCCESS, response);
     }
 
-    @Operation(summary = "캘린더 공유 API")
+    @Operation(summary = "5. 캘린더 공유 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "캘린더가 성공적으로 공유되었습니다."),
             @ApiResponse(responseCode = "400", description = "잘못된 요청: 캘린더 id와 공유될 사용자 id를 꼭 넣어주세요."),
@@ -122,7 +124,7 @@ public class CalendarController {
         return ResponseMessageDto.toResponseEntity(SHARE_CALENDAR_SUCCESS, response);
     }
 
-    @Operation(summary = "공유된 캘린더 조회 API")
+    @Operation(summary = "6. 공유된 캘린더 조회 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "공유된 캘린더를 성공적으로 조회하였습니다"),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
@@ -136,7 +138,7 @@ public class CalendarController {
         return ResponseMessageDto.toResponseEntity(FIND_SHARED_CALENDAR_SUCCESS, response);
     }
 
-    @Operation(summary = "캘린더 공유 해제 API")
+    @Operation(summary = "7. 캘린더 공유 해제 API", tags = {"3. Calendar API"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "캘린더 공유가 성공적으로 해제되었습니다."),
             @ApiResponse(responseCode = "401", description = "로그인을 해주세요"),
