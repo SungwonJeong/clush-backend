@@ -15,8 +15,9 @@ Clush API는 Todo 관리 및 캘린더 공유 기능을 제공하는 백엔드 �
 - **MySQL 8.3**
 
 ### MySQL 설정
-```sql
+₩₩₩sql
 CREATE DATABASE clush;
+₩₩₩
 
 - **hostname** : `localhost`
 - **port** : `3306`
@@ -24,6 +25,7 @@ CREATE DATABASE clush;
 - 또한, **DB 테이블**은 `ddl-auto: update`로 설정되어 있으므로, 애플리케이션 실행 시 자동으로 테이블이 생성 및 업데이트됩니다.
 
 ### ERD (Entity Relationship Diagram)
+
 
 
 
