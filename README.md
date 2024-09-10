@@ -25,6 +25,7 @@ CREATE DATABASE clush;
 - 또한, **DB 테이블**은 `ddl-auto: update`로 설정되어 있으므로, 애플리케이션 실행 시 자동으로 테이블이 생성 및 업데이트됩니다.
 
 ### ERD (Entity Relationship Diagram)
+<img width="942" alt="clush ERD" src="https://github.com/user-attachments/assets/ef40896c-e075-4ec6-a39c-7c6482123cca">
 
 
 
